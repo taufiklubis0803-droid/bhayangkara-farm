@@ -1,0 +1,186 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* ColorHunt Palette: #071B2B #167D8D #B9E4E8 #EEEEEE */
+  --color-farm-navy: #071B2B;
+  --color-farm-teal: #167D8D;
+  --color-farm-aqua: #B9E4E8;
+  --color-farm-canvas: #EEEEEE;
+
+  /* Semantic tokens */
+  --color-farm-dark: #071B2B;
+  --color-farm-primary: #167D8D;
+  --color-farm-accent: #167D8D;
+  --color-farm-highlight: #B9E4E8;
+  --color-farm-gold: #D4A359;
+  --color-farm-danger: #DC2626;
+  --color-farm-muted: #355365;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    scroll-behavior: smooth;
+    background-color: #EEEEEE;
+    color: #071B2B;
+  }
+
+  html.dark {
+    background-color: #071B2B;
+    color: #EEEEEE;
+  }
+
+  body {
+    background-color: inherit;
+    color: inherit;
+    transition: background-color 200ms ease, color 200ms ease;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-display);
+  }
+
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+
+  input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),
+  select,
+  textarea {
+    transition: border-color 150ms ease, box-shadow 150ms ease, background-color 150ms ease;
+  }
+
+  input:not([type="checkbox"]):not([type="radio"]):not([type="file"]):focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+    border-color: #167D8D;
+    box-shadow: 0 0 0 3px rgba(22, 125, 141, 0.20);
+  }
+
+  .dark input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),
+  .dark select,
+  .dark textarea {
+    background-color: #091D2E;
+    border-color: rgba(22, 125, 141, 0.40);
+    color: #EEEEEE;
+  }
+
+  .dark input::placeholder,
+  .dark textarea::placeholder {
+    color: #6EA4B0;
+  }
+
+  .dark option {
+    background-color: #071B2B;
+    color: #EEEEEE;
+  }
+
+  /* Efek Light / Luminous Glow pada seluruh icon aplikasi */
+  svg.lucide,
+  .icon-light {
+    filter:
+      drop-shadow(0 0 3px rgba(22, 125, 141, 0.34))
+      drop-shadow(0 0 7px rgba(185, 228, 232, 0.58));
+    transition: filter 180ms ease, transform 180ms ease;
+  }
+
+  aside svg.lucide,
+  .dark svg.lucide,
+  .dark .icon-light {
+    filter:
+      drop-shadow(0 0 4px rgba(185, 228, 232, 0.52))
+      drop-shadow(0 0 10px rgba(22, 125, 141, 0.46));
+  }
+
+  button:hover svg.lucide,
+  a:hover svg.lucide,
+  label:hover svg.lucide {
+    filter:
+      drop-shadow(0 0 5px rgba(22, 125, 141, 0.55))
+      drop-shadow(0 0 10px rgba(185, 228, 232, 0.78));
+  }
+
+  aside button:hover svg.lucide,
+  .dark button:hover svg.lucide,
+  .dark a:hover svg.lucide,
+  .dark label:hover svg.lucide {
+    filter:
+      drop-shadow(0 0 6px rgba(185, 228, 232, 0.85))
+      drop-shadow(0 0 14px rgba(22, 125, 141, 0.68));
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    svg.lucide,
+    .icon-light {
+      transition: none;
+    }
+  }
+}
+
+@layer components {
+  .farm-card {
+    border-radius: 1rem;
+    border: 1px solid rgba(22, 125, 141, 0.18);
+    background-color: #FFFFFF;
+    box-shadow:
+      0 1px 2px rgba(7, 27, 43, 0.05),
+      0 10px 26px -16px rgba(7, 27, 43, 0.14);
+    transition: border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+  }
+
+  .dark .farm-card {
+    border-color: rgba(185, 228, 232, 0.16);
+    background-color: #0C2538;
+    box-shadow:
+      inset 0 1px 0 rgba(185, 228, 232, 0.07),
+      0 14px 32px -18px rgba(0, 0, 0, 0.72);
+  }
+
+  .farm-subcard {
+    border-radius: 0.75rem;
+    border: 1px solid rgba(22, 125, 141, 0.16);
+    background-color: #F6F9FA;
+  }
+
+  .dark .farm-subcard {
+    border-color: rgba(185, 228, 232, 0.14);
+    background-color: #113047;
+  }
+
+  .farm-mint-box {
+    border-radius: 0.75rem;
+    border: 1px solid rgba(22, 125, 141, 0.34);
+    background-color: rgba(185, 228, 232, 0.42);
+  }
+
+  .dark .farm-mint-box {
+    border-color: rgba(185, 228, 232, 0.28);
+    background-color: rgba(22, 125, 141, 0.26);
+  }
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  html, body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  svg.lucide,
+  .icon-light {
+    filter: none !important;
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "RIZKA FARM",
+  "description": "Farm Management, Bookkeeping & Financial System untuk usaha peternakan ayam kampung.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
